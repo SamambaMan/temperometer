@@ -55,8 +55,7 @@ coverage.xml
 local_settings.py
 /media/
 /static/
-base.sql
-base_test.sql
+*.sqlite3
 
 # Flask stuff:
 instance/

@@ -20,7 +20,13 @@ ___________
         pip install --upgrade pip
         pip install -r requirements.txt
 
+4.  Rodando o check inicial:
 
+        ./manage.py check
+
+5.  Rodando as migrations iniciais e gerando a base de dados padrão:
+
+        ./manage.py migrate
 
 Testes:
 _______
