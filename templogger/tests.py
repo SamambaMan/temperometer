@@ -60,3 +60,16 @@ class ConsutaCepTest(TestCase):
         """Dado um cep inexistente, checa o lancamentode ValueError"""
         with self.assertRaises(ValueError):
             self.busca_cep_exemplo(self.CEP_INEXISTENTE)
+
+
+class IntegradoCidadePorCep(TestCase):
+    """Testes integrando as buscas de Cidade e CEP"""
+    CEP = '21940-230'
+    CIDADE = 'Rio de Janeiro'
+
+    def test_busca_cidade_por_cep(self):
+        """Verifica se é possível buscar uma cidade a partir de seu cep"""
+        from .datasources import ConsultaCep, ConsultaCidade
+        cep = ConsultaCep(self.CEP)
+        cidade = ConsultaCidade(cep.dados['cidade'])
+        self.assertEqual(self.CIDADE, cidade.dados['cidade'])
