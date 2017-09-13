@@ -40,6 +40,13 @@ class ConsultaCidade(object):
 
         informacoes = retorno.json()
 
+        # é obrigatório que a consulta seja pelo nome da cidade
+        # e que a chave procurada é válida
+        if not informacoes['valid_key'] or\
+           informacoes['by'] != u'city_name':
+            raise ValueError(
+                "A cidade '{0}' não foi encontrada".format(cidade))
+
         self.dados = {
             'cidade': informacoes['results']['city_name'],
             'data': informacoes['results']['date'],

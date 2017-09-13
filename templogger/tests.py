@@ -11,8 +11,8 @@ class ConsultaCidadeTest(TestCase):
     """Cobrira os testes relacionados ao servico de dados de cidades"""
 
     CIDADE = u'Rio de Janeiro'
-    CIDADE_INVALIDA = 'SbrublesCity'
-    CIDADE_PADRAO = 'Sao Paulo'
+    CIDADE_INVALIDA_BY = 'SbrublesCity'
+    CIDADE_INVALIDA_KEY = '12312312313123'
 
     @staticmethod
     def buscar_cidade_exemplo(exemplo):
@@ -28,9 +28,10 @@ class ConsultaCidadeTest(TestCase):
     def test_busca_cidade_invalida(self):
         """Testa se na busca de uma cidade inválida o resultado alem de
         ser diferente do informado, é igual ao padrão 'Sao Paulo'"""
-        cidade = self.buscar_cidade_exemplo(self.CIDADE_INVALIDA)
-        self.assertNotEqual(self.CIDADE_INVALIDA, cidade.dados['cidade'])
-        self.assertEqual(self.CIDADE_PADRAO, cidade.dados['cidade'])
+        with self.assertRaises(ValueError):
+            self.buscar_cidade_exemplo(self.CIDADE_INVALIDA_BY)
+        with self.assertRaises(ValueError):
+            self.buscar_cidade_exemplo(self.CIDADE_INVALIDA_KEY)
 
 
 class ConsutaCepTest(TestCase):
@@ -62,7 +63,7 @@ class ConsutaCepTest(TestCase):
             self.busca_cep_exemplo(self.CEP_INEXISTENTE)
 
 
-class IntegradoCidadePorCep(TestCase):
+class IntegradoCidadePorCepTest(TestCase):
     """Testes integrando as buscas de Cidade e CEP"""
     CEP = '21940-230'
     CIDADE = 'Rio de Janeiro'
@@ -73,3 +74,22 @@ class IntegradoCidadePorCep(TestCase):
         cep = ConsultaCep(self.CEP)
         cidade = ConsultaCidade(cep.dados['cidade'])
         self.assertEqual(self.CIDADE, cidade.dados['cidade'])
+
+
+class CidadeTest(TestCase):
+    """Testes de CRUD e validação de Cidade"""
+    CIDADE = "Rio de Janeiro"
+    CIDADE_INVALIDA_KEY = '12312312313123'
+
+    def teste_criacao_cidade(self):
+        """testa a simples criacao de uma cidade"""
+        from .models import Cidade
+        from django.core.exceptions import ValidationError
+
+        nova_cidade = Cidade.objects.criarcidade(self.CIDADE)
+        self.assertEqual(nova_cidade.nomeinformado, self.CIDADE)
+
+        # testa se, criando novamente a cidade com o mesmo nome
+        # o sistema deverá lançar erro
+        with self.assertRaises(ValidationError):
+            Cidade.objects.criarcidade(self.CIDADE)

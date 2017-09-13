@@ -5,4 +5,5 @@ omit =
     # omit everything in /usr
     /usr/*
     */site-packages/*
+    manage.py
 
