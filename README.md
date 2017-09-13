@@ -35,6 +35,10 @@ _______
 
         coverage run manage.py test
 
-2.  Para rodar o pep8:
+2.  Para gerar o report de cobertura:
+
+        coverage report -m
+
+3.  Para rodar o pep8:
 
         pep8 .
