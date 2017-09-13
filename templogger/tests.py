@@ -77,19 +77,61 @@ class IntegradoCidadePorCepTest(TestCase):
 
 
 class CidadeTest(TestCase):
-    """Testes de CRUD e validação de Cidade"""
-    CIDADE = "Rio de Janeiro"
+    """Testes de CRD e validação de Cidade"""
+    CIDADE = 'Rio de Janeiro'
     CIDADE_INVALIDA_KEY = '12312312313123'
+    CIDADE_APAGAR = 'Sao Paulo'
+    CIDADE_BUSCAR_TEMPERATURA = 'Belo Horizonte'
 
-    def teste_criacao_cidade(self):
-        """testa a simples criacao de uma cidade"""
+    def test_criacao_cidade(self):
+        """testa a criacao de cidade e validacoes atreladas a criacao
+        de novas cidades"""
         from .models import Cidade
-        from django.core.exceptions import ValidationError
+        from django.core.exceptions import ValidationError, ObjectDoesNotExist
 
-        nova_cidade = Cidade.objects.criarcidade(self.CIDADE)
+        nova_cidade = Cidade.objects.nova(self.CIDADE)
         self.assertEqual(nova_cidade.nomeinformado, self.CIDADE)
+        self.assertEqual(str(nova_cidade), self.CIDADE)
+
+        # testa a obtenção da cidade criada
+        try:
+            Cidade.objects.obter(self.CIDADE)
+        except ObjectDoesNotExist:
+            self.fail(u"""Não foi encontrada a cidade
+                cadastrada anteriormente pelo seu nome""")
+
+        # testa se não é possível achar uma cidade inexistente
+        with self.assertRaises(ObjectDoesNotExist):
+            Cidade.objects.obter(self.CIDADE_INVALIDA_KEY)
 
         # testa se, criando novamente a cidade com o mesmo nome
         # o sistema deverá lançar erro
         with self.assertRaises(ValidationError):
-            Cidade.objects.criarcidade(self.CIDADE)
+            Cidade.objects.nova(self.CIDADE)
+
+    def test_delecao_cidade(self):
+        """quando uma cidade for deletada seus registros devem ser apagados
+        e ela não deve ser encontrada"""
+        from .models import Cidade
+        from django.core.exceptions import ObjectDoesNotExist
+
+        Cidade.objects.nova(self.CIDADE_APAGAR)
+        Cidade.objects.deletar(self.CIDADE_APAGAR)
+
+        with self.assertRaises(ObjectDoesNotExist):
+            Cidade.objects.obter(self.CIDADE_APAGAR)
+
+    def test_busca_temperatura(self):
+        """verificar a busca e contabilizacao de temperaturas"""
+        from .models import Cidade
+
+        cidade = Cidade.objects.nova(self.CIDADE_BUSCAR_TEMPERATURA)
+        self.assertEqual(cidade.temperatura_set.count(), 0)
+        cidade.buscartemperatura()
+        self.assertEqual(cidade.temperatura_set.count(), 1)
+        cidade.buscartemperatura()
+        self.assertEqual(cidade.temperatura_set.count(), 2)
+        cidade.limpartemperaturas()
+        self.assertEqual(cidade.temperatura_set.count(), 0)
+
+
