@@ -4,37 +4,55 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-ALLOWED_HOSTS	../temperometer/settings.py	/^ALLOWED_HOSTS = []$/;"	kind:variable	line:28
-AUTH_PASSWORD_VALIDATORS	../temperometer/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:87
+ALLOWED_HOSTS	../temperometer/settings.py	/^ALLOWED_HOSTS = ['*']$/;"	kind:variable	line:28
+AUTH_PASSWORD_VALIDATORS	../temperometer/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	kind:variable	line:94
 BASE_DIR	../temperometer/settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	kind:variable	line:16
-ConsultaCidade	../templogger/datasources.py	/^class ConsultaCidade:$/;"	kind:class	line:1
-DATABASES	../temperometer/settings.py	/^DATABASES = {$/;"	kind:variable	line:76
+CEP	../templogger/tests.py	/^    CEP = '21940-230'$/;"	kind:variable	line:39
+CEP_INVALIDO	../templogger/tests.py	/^    CEP_INVALIDO = '9232'$/;"	kind:variable	line:40
+CIDADE	../templogger/tests.py	/^    CIDADE = u'Rio de Janeiro'$/;"	kind:variable	line:13
+CIDADE_INVALIDA	../templogger/tests.py	/^    CIDADE_INVALIDA = 'SbrublesCity'$/;"	kind:variable	line:14
+CIDADE_PADRAO	../templogger/tests.py	/^    CIDADE_PADRAO = 'Sao Paulo'$/;"	kind:variable	line:15
+ConsultaCep	../templogger/datasources.py	/^class ConsultaCep(object):$/;"	kind:class	line:51
+ConsultaCidade	../templogger/datasources.py	/^class ConsultaCidade(object):$/;"	kind:class	line:8
+ConsultaCidadeTest	../templogger/tests.py	/^class ConsultaCidadeTest(TestCase):$/;"	kind:class	line:10
+ConsutaCepTest	../templogger/tests.py	/^class ConsutaCepTest(TestCase):$/;"	kind:class	line:36
+DATABASES	../temperometer/settings.py	/^DATABASES = {$/;"	kind:variable	line:83
 DEBUG	../temperometer/settings.py	/^DEBUG = True$/;"	kind:variable	line:26
-INSTALLED_APPS	../temperometer/settings.py	/^INSTALLED_APPS = [$/;"	kind:variable	line:33
-LANGUAGE_CODE	../temperometer/settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	kind:variable	line:106
-MIDDLEWARE	../temperometer/settings.py	/^MIDDLEWARE = [$/;"	kind:variable	line:42
-ROOT_URLCONF	../temperometer/settings.py	/^ROOT_URLCONF = 'temperometer.urls'$/;"	kind:variable	line:52
-RecuperarDados	../templogger/datasources.py	/^    def RecuperarDados(cidade):$/;"	kind:member	line:8
-STATIC_URL	../temperometer/settings.py	/^STATIC_URL = '\/static\/'$/;"	kind:variable	line:120
-TEMPLATES	../temperometer/settings.py	/^TEMPLATES = [$/;"	kind:variable	line:54
-TIME_ZONE	../temperometer/settings.py	/^TIME_ZONE = 'UTC'$/;"	kind:variable	line:108
+HGBRASIL	../temperometer/settings.py	/^HGBRASIL = {$/;"	kind:variable	line:30
+INSTALLED_APPS	../temperometer/settings.py	/^INSTALLED_APPS = [$/;"	kind:variable	line:39
+LANGUAGE_CODE	../temperometer/settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	kind:variable	line:113
+MIDDLEWARE	../temperometer/settings.py	/^MIDDLEWARE = [$/;"	kind:variable	line:49
+ROOT_URLCONF	../temperometer/settings.py	/^ROOT_URLCONF = 'temperometer.urls'$/;"	kind:variable	line:59
+STATIC_URL	../temperometer/settings.py	/^STATIC_URL = '\/static\/'$/;"	kind:variable	line:127
+TEMPLATES	../temperometer/settings.py	/^TEMPLATES = [$/;"	kind:variable	line:61
+TIME_ZONE	../temperometer/settings.py	/^TIME_ZONE = 'UTC'$/;"	kind:variable	line:115
 TemploggerConfig	../templogger/apps.py	/^class TemploggerConfig(AppConfig):$/;"	kind:class	line:7
-USE_I18N	../temperometer/settings.py	/^USE_I18N = True$/;"	kind:variable	line:110
-USE_L10N	../temperometer/settings.py	/^USE_L10N = True$/;"	kind:variable	line:112
-USE_TZ	../temperometer/settings.py	/^USE_TZ = True$/;"	kind:variable	line:114
-WSGI_APPLICATION	../temperometer/settings.py	/^WSGI_APPLICATION = 'temperometer.wsgi.application'$/;"	kind:variable	line:70
-__init__	../templogger/datasources.py	/^    def __init__(self):$/;"	kind:member	line:5
+USE_I18N	../temperometer/settings.py	/^USE_I18N = True$/;"	kind:variable	line:117
+USE_L10N	../temperometer/settings.py	/^USE_L10N = True$/;"	kind:variable	line:119
+USE_TZ	../temperometer/settings.py	/^USE_TZ = True$/;"	kind:variable	line:121
+VIACEP	../temperometer/settings.py	/^VIACEP = 'https:\/\/viacep.com.br\/ws\/{0}\/json\/'$/;"	kind:variable	line:35
+WSGI_APPLICATION	../temperometer/settings.py	/^WSGI_APPLICATION = 'temperometer.wsgi.application'$/;"	kind:variable	line:77
+__init__	../templogger/datasources.py	/^    def __init__(self, cep=None):$/;"	kind:member	line:56
+__init__	../templogger/datasources.py	/^    def __init__(self, cidade=None):$/;"	kind:member	line:13
 __init__.py	../temperometer/__init__.py	1;"	kind:file	line:1
 __init__.py	../templogger/__init__.py	1;"	kind:file	line:1
 __init__.py	../templogger/migrations/__init__.py	1;"	kind:file	line:1
 admin.py	../templogger/admin.py	1;"	kind:file	line:1
 application	../temperometer/wsgi.py	/^application = get_wsgi_application()$/;"	kind:variable	line:16
 apps.py	../templogger/apps.py	1;"	kind:file	line:1
+busca_cep_exemplo	../templogger/tests.py	/^    def busca_cep_exemplo(exemplo):$/;"	kind:member	line:43
+buscar_cidade_exemplo	../templogger/tests.py	/^    def buscar_cidade_exemplo(exemplo):$/;"	kind:member	line:18
 datasources.py	../templogger/datasources.py	1;"	kind:file	line:1
 manage.py	../manage.py	1;"	kind:file	line:1
 models.py	../templogger/models.py	1;"	kind:file	line:1
 name	../templogger/apps.py	/^    name = 'templogger'$/;"	kind:variable	line:8
+recuperardados	../templogger/datasources.py	/^    def recuperardados(self, cep):$/;"	kind:member	line:64
+recuperardados	../templogger/datasources.py	/^    def recuperardados(self, cidade):$/;"	kind:member	line:21
 settings.py	../temperometer/settings.py	1;"	kind:file	line:1
+test_busca_cep	../templogger/tests.py	/^    def test_busca_cep(self):$/;"	kind:member	line:48
+test_busca_cidade	../templogger/tests.py	/^    def test_busca_cidade(self):$/;"	kind:member	line:23
+test_busca_cidade_invalida	../templogger/tests.py	/^    def test_busca_cidade_invalida(self):$/;"	kind:member	line:28
+test_cpf_invalido	../templogger/tests.py	/^    def test_cpf_invalido(self):$/;"	kind:member	line:53
 tests.py	../templogger/tests.py	1;"	kind:file	line:1
 urlpatterns	../temperometer/urls.py	/^urlpatterns = [$/;"	kind:variable	line:19
 urls.py	../temperometer/urls.py	1;"	kind:file	line:1

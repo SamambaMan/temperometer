@@ -32,6 +32,8 @@ HGBRASIL = {
     'chave': '02a1b74c',
 }
 
+VIACEP = 'https://viacep.com.br/ws/{0}/json/'
+
 # Application definition
 
 INSTALLED_APPS = [

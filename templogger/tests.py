@@ -10,14 +10,53 @@ from django.test import TestCase
 class ConsultaCidadeTest(TestCase):
     """Cobrira os testes relacionados ao servico de dados de cidades"""
 
-    CIDADE = u'Sao Paulo'
+    CIDADE = u'Rio de Janeiro'
+    CIDADE_INVALIDA = 'SbrublesCity'
+    CIDADE_PADRAO = 'Sao Paulo'
 
-    def buscar_cidade_exemplo(self):
-        """busca e gera uma cidade, exemplo rio de janeiro"""
+    @staticmethod
+    def buscar_cidade_exemplo(exemplo):
+        """busca e gera uma cidade exemplo"""
         from .datasources import ConsultaCidade
-        return ConsultaCidade(self.CIDADE)
+        return ConsultaCidade(exemplo)
 
     def test_busca_cidade(self):
         """testa se os dados de cidade recebidos casam com a cidade buscada"""
-        cidade = self.buscar_cidade_exemplo()
+        cidade = self.buscar_cidade_exemplo(self.CIDADE)
         self.assertEqual(self.CIDADE, cidade.dados['cidade'])
+
+    def test_busca_cidade_invalida(self):
+        """Testa se na busca de uma cidade inválida o resultado alem de
+        ser diferente do informado, é igual ao padrão 'Sao Paulo'"""
+        cidade = self.buscar_cidade_exemplo(self.CIDADE_INVALIDA)
+        self.assertNotEqual(self.CIDADE_INVALIDA, cidade.dados['cidade'])
+        self.assertEqual(self.CIDADE_PADRAO, cidade.dados['cidade'])
+
+
+class ConsutaCepTest(TestCase):
+    """Cobrira os testes de busca de CEP no ViaCEP"""
+
+    CEP = '21940-230'
+    CEP_INVALIDO = '9232'
+    CEP_INEXISTENTE = '99999999'
+
+    @staticmethod
+    def busca_cep_exemplo(exemplo):
+        """busca um cep de exemplo na base do ViaCEP"""
+        from .datasources import ConsultaCep
+        return ConsultaCep(exemplo)
+
+    def test_busca_cep(self):
+        """testa se o cep informado é o mesmo do retornado"""
+        cep = self.busca_cep_exemplo(self.CEP)
+        self.assertEqual(self.CEP, cep.dados['cep'])
+
+    def test_cpf_invalido(self):
+        """testa se CPF invalido informado gera Código 400"""
+        with self.assertRaises(Exception):
+            self.busca_cep_exemplo(self.CEP_INVALIDO)
+
+    def testa_cpf_nao_encontrado(self):
+        """Dado um cep inexistente, checa o lancamentode ValueError"""
+        with self.assertRaises(ValueError):
+            self.busca_cep_exemplo(self.CEP_INEXISTENTE)
