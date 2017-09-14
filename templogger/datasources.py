@@ -93,3 +93,22 @@ class ConsultaCep(object):
             'cidade': informacoes['localidade'],
             'cep': informacoes['cep']
         }
+
+
+class ConsultaCidadePorCep(object):
+    """
+    Coordena a consulta dos dados de Cidade a partir de um CEP
+    """
+    def __init__(self, cep=None):
+        """Constroi os atributos da classe e pesquisa pelo CEP caso
+        informado"""
+        self.dados = None
+
+        if cep:
+            self.recuperardados(cep)
+
+    def recuperardados(self, cep):
+        """Recupera as informações da Cidade a partir do CEP"""
+        cepencontrado = ConsultaCep(cep)
+        cidade_encontrada = ConsultaCidade(cepencontrado.dados['cidade'])
+        self.dados = cidade_encontrada.dados

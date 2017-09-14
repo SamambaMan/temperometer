@@ -42,3 +42,16 @@ _______
 3.  Para rodar o pep8:
 
         pep8 .
+
+Utilização
+__________
+
+1.  Para executar o comando de atualização automática das temperaturas das cidades é necessário executar:
+
+        workon temperometer
+        ./manage.py atualizartemperaturas
+
+Este processo pode ser cadastrado no crontab do servidor para ser executado de hora em hora.
+Para obter ajuda de utilização ou para auxílio na configuração do python path diretamente na execução do comando:
+        
+        ./manage.py help atualizartemperaturas

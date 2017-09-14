@@ -68,12 +68,27 @@ class IntegradoCidadePorCepTest(TestCase):
     CEP = '21940-230'
     CIDADE = 'Rio de Janeiro'
 
+    CEP_INTEGRADO = '76811-550'
+    CIDADE_INTEGRADO = 'Porto Velho'
+
     def test_busca_cidade_por_cep(self):
         """Verifica se é possível buscar uma cidade a partir de seu cep"""
         from .datasources import ConsultaCep, ConsultaCidade
         cep = ConsultaCep(self.CEP)
         cidade = ConsultaCidade(cep.dados['cidade'])
         self.assertEqual(self.CIDADE, cidade.dados['cidade'])
+
+    def test_busca_por_cep_coordenado(self):
+        """Utiliza o coordinator para realizar a busca por CEP"""
+        from .datasources import ConsultaCidadePorCep
+        cidade = ConsultaCidadePorCep(self.CEP)
+        self.assertEqual(self.CIDADE, cidade.dados['cidade'])
+
+    def test_nova_cidade_por_cep_integrado(self):
+        """Adiciona uma nova cidade por cep"""
+        from .models import Cidade
+        cidade = Cidade.objects.novaporcep(self.CEP_INTEGRADO)
+        self.assertEqual(self.CIDADE_INTEGRADO, cidade.nome)
 
 
 class CidadeTest(TestCase):
