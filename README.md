@@ -68,3 +68,8 @@ Para obter ajuda de utilização ou para auxílio na configuração do python pa
         curl -X DELETE --data '' 'http://localhost:8000/cities/cabo_frio/'
         curl -X DELETE --data '' 'http://localhost:8000/cities/rio_de_janeiro/temperatures/'
         curl -X GET --data '' 'http://localhost:8000/temperatures/?page=1'
+
+  Os envios e recebimentos também podem mesclar cidades separadas por espaço ou underscore:
+
+        curl -X POST --data '' 'http://localhost:8000/cities/sao%20goncalo/'
+        curl -X GET --data '' 'http://localhost:8000/cities/sao_goncalo/'
