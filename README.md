@@ -33,7 +33,7 @@ _______
 
 1.  Para efetuar os testes e extrair o relatório de cobertura:
 
-        coverage run manage.py test
+        coverage run manage.py test --pattern=tests*
 
 2.  Para gerar o report de cobertura:
 

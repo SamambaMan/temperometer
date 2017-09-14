@@ -4,8 +4,6 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-# Create your tests here.
-
 
 class ConsultaCidadeTest(TestCase):
     """Cobrira os testes relacionados ao servico de dados de cidades"""
