@@ -24,9 +24,10 @@ class Command(BaseCommand):
         for cidade in Cidade.objects.all():
             try:
                 cidade.buscartemperatura()
-            except Exception:
+            except Exception as error:
+                print error
+                print cidade
                 # TODO: Logar a cidade e o problema que possa ter acontecido
-                pass
 
         self.stdout.write(
             self.style.SUCCESS("Temperaturas das cidades atualizadas"))

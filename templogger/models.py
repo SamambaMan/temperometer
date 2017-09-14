@@ -41,16 +41,17 @@ class Cidade(models.Model):
         """armazena uma nova temperatura a partir da fonte de dados"""
         from .datasources import ConsultaCidade
         from datetime import datetime
+        from django.utils.timezone import utc
 
         dadoscidade = ConsultaCidade(self.nome)
 
         nova_temperatura = Temperatura(
             cidade=self,
-            data_pesquisa=datetime.now(),
+            data_pesquisa=datetime.utcnow().replace(tzinfo=utc),
             data=datetime.strptime("{0} {1}"
                                    .format(dadoscidade.dados['data'],
                                            dadoscidade.dados['hora']),
-                                   self.FDATA),
+                                   self.FDATA).replace(tzinfo=utc),
             temperatura=int(dadoscidade.dados['temperatura'])
         )
 
@@ -68,6 +69,6 @@ class Temperatura(models.Model):
     """Armazena as temperaturas das cidades"""
 
     cidade = models.ForeignKey('Cidade')
-    data_pesquisa = models.DateField()
-    data = models.DateField()
+    data_pesquisa = models.DateTimeField()
+    data = models.DateTimeField()
     temperatura = models.IntegerField()

@@ -89,6 +89,8 @@ class IntegradoCidadePorCepTest(TestCase):
         from .models import Cidade
         cidade = Cidade.objects.novaporcep(self.CEP_INTEGRADO)
         self.assertEqual(self.CIDADE_INTEGRADO, cidade.nome)
+        cidade = Cidade.objects.obter(self.CIDADE_INTEGRADO)
+        self.assertEqual(self.CIDADE_INTEGRADO, cidade.nome)
 
 
 class CidadeTest(TestCase):

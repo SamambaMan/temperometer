@@ -45,7 +45,7 @@ class ConsultaCidade(object):
         if not informacoes['valid_key'] or\
            informacoes['by'] != u'city_name':
             raise ValueError(
-                "A cidade '{0}' não foi encontrada".format(cidade))
+                u"A cidade {0} não foi encontrada".format(cidade))
 
         self.dados = {
             'cidade': informacoes['results']['city_name'],
@@ -86,7 +86,7 @@ class ConsultaCep(object):
 
         if 'erro' in informacoes:
             raise ValueError(
-                """A busca pelo CEP {0} não foi encontrada
+                u"""A busca pelo CEP {0} não foi encontrada
                 ou gerou um erro remoto""".format(cep))
 
         self.dados = {

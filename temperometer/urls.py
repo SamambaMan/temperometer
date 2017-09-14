@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from templogger.views import CidadeApi
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^cities/(?P<nomecidade>[A-Za-z_ ]+)/$', CidadeApi.as_view()),
 ]
