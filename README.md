@@ -55,3 +55,13 @@ Este processo pode ser cadastrado no crontab do servidor para ser executado de h
 Para obter ajuda de utilização ou para auxílio na configuração do python path diretamente na execução do comando:
         
         ./manage.py help atualizartemperaturas
+
+2.  Para rodar o servidor de desenvolvimento local e realizar chamadas basta:
+  
+        ./manage.py runserver
+
+3. Com o servidor de desenvolvimento rodando, pode-se executar os seguintes exemplos de chamadas:
+
+        curl -X POST --data '' 'http://localhost:8000/cities/cabo_frio/'
+        curl -X GET --data '' 'http://localhost:8000/cities/cabo_frio/'
+        curl -X DELETE --data '' 'http://localhost:8000/cities/cabo_frio/'
