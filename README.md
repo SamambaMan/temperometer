@@ -63,5 +63,7 @@ Para obter ajuda de utilização ou para auxílio na configuração do python pa
 3. Com o servidor de desenvolvimento rodando, pode-se executar os seguintes exemplos de chamadas:
 
         curl -X POST --data '' 'http://localhost:8000/cities/cabo_frio/'
+        curl -X POST --data '' 'http://localhost:8000/cities/by_cep/21931600/
         curl -X GET --data '' 'http://localhost:8000/cities/cabo_frio/'
         curl -X DELETE --data '' 'http://localhost:8000/cities/cabo_frio/'
+        

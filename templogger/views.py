@@ -58,3 +58,17 @@ class CidadeApi(APIView):
         except (ValueError, ValidationError) as erro:
             return Response({'erro': unicode(erro)},
                             status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def nova_cidade_por_cep(request, cep):
+    """Inclui uma cidade a partir do seu nome"""
+    del request
+    from .models import Cidade
+
+    try:
+        cidade = Cidade.objects.novaporcep(cep)
+        return Response(cidadeserializer(cidade))
+    except (ValueError, ValidationError) as erro:
+        return Response({'erro': unicode(erro)},
+                        status=status.HTTP_400_BAD_REQUEST)

@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from templogger.views import CidadeApi
+from templogger.views import CidadeApi, nova_cidade_por_cep
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^cities/(?P<nomecidade>[A-Za-z_ ]+)/$', CidadeApi.as_view()),
+    url(r'^cities/by_cep/(?P<cep>\d{5}\-?\d{3})/$', nova_cidade_por_cep),
 ]
