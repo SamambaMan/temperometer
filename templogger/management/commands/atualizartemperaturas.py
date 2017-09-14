@@ -25,8 +25,7 @@ class Command(BaseCommand):
             try:
                 cidade.buscartemperatura()
             except Exception as error:
-                print error
-                print cidade
+                print str(error)
                 # TODO: Logar a cidade e o problema que possa ter acontecido
 
         self.stdout.write(

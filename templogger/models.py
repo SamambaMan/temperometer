@@ -26,13 +26,19 @@ class Cidade(models.Model):
         if Cidade.objects.filter(nome=self.nome).\
                 exclude(id=idcidade).count() > 0:
             raise ValidationError(
-                "Já existe cadastrada uma cidade com o nome {0}"
+                u"Já existe cadastrada uma cidade com o nome {0}"
                 .format(self.nome))
 
+    @transaction.atomic
     def delete(self, using=None, keep_parents=False):
-        """apaga todas as temperatuaras anexadas a essa cidade"""
-        self.temperatura_set.all().delete()
+        """apaga a cidade e todas as temperatuaras anexadas a ela"""
+        self.apagartemperaturas()
         super(Cidade, self).delete(using)
+
+    @transaction.atomic
+    def apagartemperaturas(self):
+        """apaga todas as temperaturas associadas a cidade"""
+        self.temperatura_set.all().delete()
 
     FDATA = '%d/%m/%Y %H:%M'
 
@@ -67,7 +73,6 @@ class Cidade(models.Model):
 
 class Temperatura(models.Model):
     """Armazena as temperaturas das cidades"""
-
     cidade = models.ForeignKey('Cidade')
     data_pesquisa = models.DateTimeField()
     data = models.DateTimeField()

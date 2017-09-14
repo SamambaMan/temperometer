@@ -66,4 +66,5 @@ Para obter ajuda de utilização ou para auxílio na configuração do python pa
         curl -X POST --data '' 'http://localhost:8000/cities/by_cep/21931600/
         curl -X GET --data '' 'http://localhost:8000/cities/cabo_frio/'
         curl -X DELETE --data '' 'http://localhost:8000/cities/cabo_frio/'
-        
+        curl -X DELETE --data '' 'http://localhost:8000/cities/rio_de_janeiro/temperatures/'
+        curl -X GET --data '' 'http://localhost:8000/temperatures/?page=1'
