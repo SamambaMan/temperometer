@@ -36,10 +36,11 @@ class CidadeManager(models.Manager):
     def _persistenovacidade(nomecidade, cidade):
         """Persiste os dados da cidade encontrada na base de dados"""
         from .models import Cidade
+        from unidecode import unidecode
 
         nova_cidade = Cidade()
-        nova_cidade.nomeinformado = nomecidade
-        nova_cidade.nome = cidade.dados['cidade']
+        nova_cidade.nomeinformado = unidecode(nomecidade)
+        nova_cidade.nome = unidecode(cidade.dados['cidade'])
 
         nova_cidade.clean()
         nova_cidade.save()
@@ -52,6 +53,10 @@ class CidadeManager(models.Manager):
         ou underscore"""
         from .models import Cidade
         from django.db.models import Q
+        from unidecode import unidecode
+
+        nomecidade = unidecode(nomecidade)
+
         return Cidade.objects.get(
             Q(nomeinformado__iexact=nomecidade.replace(' ', '_')) |
             Q(nomeinformado__iexact=nomecidade.replace('_', ' ')) |

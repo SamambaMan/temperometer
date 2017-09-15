@@ -20,9 +20,9 @@ from templogger.views import CidadeApi, nova_cidade_por_cep,\
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^cities/(?P<nomecidade>[A-Za-z_ ]+)/$', CidadeApi.as_view()),
+    url(r'^cities/(?P<nomecidade>[\w_ ]+)/$', CidadeApi.as_view()),
     url(r'^cities/by_cep/(?P<cep>\d{5}\-?\d{3})/$', nova_cidade_por_cep),
-    url(r'^cities/(?P<nomecidade>[A-Za-z_ ]+)/temperatures/$',
+    url(r'^cities/(?P<nomecidade>[\w_ ]+)/temperatures/$',
         apagar_temperaturas),
     url(r'^temperatures/$', retornar_cidades),
 ]
