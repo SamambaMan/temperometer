@@ -43,6 +43,10 @@ _______
 
         pep8 .
 
+4.  Para rodar o script de testes 'curl':
+
+        bash curltest.sh
+
 Utilização
 __________
 
